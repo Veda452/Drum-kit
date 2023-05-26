@@ -6,10 +6,12 @@ function handleClick()
 {
     var btnInnerHTML=this.innerHTML;
     makeSound(btnInnerHTML);
+    buttonAnimation(btnInnerHTML);
 }
 document.addEventListener("keypress",function(event)
 {
     makeSound(event.key);
+    buttonAnimation(event.key);
 })
 function makeSound(key)
 {
@@ -41,8 +43,17 @@ function makeSound(key)
         break;
         case "l":
             var audio=new Audio("sounds/snare.mp3");
-            audio.play();
+            audio.play();""
         break;
         default:console.log(btnInnerHTML);
     }
+}
+function buttonAnimation(currkey)
+{
+    var activeKey=document.querySelector("."+currkey);
+    activeKey.classList.add("pressed");
+    setTimeout(function()
+    {
+        activeKey.classList.remove("pressed")
+    },100);
 }
